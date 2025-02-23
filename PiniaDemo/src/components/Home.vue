@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <p>Let's play the game</p>
-    <h2 class="text-primary pb-3">Current Score:{{ gameStore.score }}</h2>
+    <h2 class="text-primary pb-3">Current Score:{{ gameStore.getScore }}</h2>
     <span class="text-primary pb-3">Max Score: {{ gameStore.maxHeath }}</span>
     <br />
     <div class="row">
@@ -28,10 +28,10 @@
 import { useGameStore } from "../store/gameStore";
 
 function Increment() {
-  gameStore.score += Math.floor(Math.random() * 30) + 1;
+  gameStore.score += gameStore.getNextAttack;
 }
 function Decrement() {
-  gameStore.score -= Math.floor(Math.random() * 10) + 1;
+  gameStore.score -= gameStore.getNextDefense;
 }
 function Random() {
   Math.random() > 0.5 ? Increment() : Decrement();
