@@ -4,7 +4,13 @@
     <h2 class="text-primary pb-3">Current Score:{{ gameStore.getScore }}</h2>
     <span class="text-primary pb-3">Max Score: {{ gameStore.maxHeath }}</span>
     <br />
-    <div class="row">
+    <span class="text-success pb-3 h3" v-if="gameStore.getScore >= 100">
+      You Won!
+    </span>
+    <span class="text-danger pb-3 h3" v-else-if="gameStore.getScore < 0">
+      You Lost!
+    </span>
+    <div class="row" v-if="gameStore.getScore < 100 && gameStore.getScore > 0">
       <div class="col-5 offset-1">
         <button class="form-control btn btn-success p-4" @click="Increment">
           Increment
@@ -20,6 +26,14 @@
           Random
         </button>
       </div>
+    </div>
+    <div v-else>
+      <button
+        class="form-control btn btn-primary p-4"
+        @click="gameStore.resetScore()"
+      >
+        Reset Game
+      </button>
     </div>
   </div>
 </template>
